@@ -34,8 +34,8 @@ enum RssVersion {
   unknown,
 }
 
-class WebFeed {
-  const WebFeed({
+class RssFeedParser {
+  const RssFeedParser({
     required this.title,
     required this.description,
     required this.links,
@@ -47,18 +47,18 @@ class WebFeed {
   final List<String?> links;
   final List<WebFeedItem> items;
 
-  static WebFeed fromXmlString(String xmlString) {
+  static RssFeedParser fromXmlString(String xmlString) {
     final rssVersion = detectRssVersion(xmlString);
     switch (rssVersion) {
       case RssVersion.rss1:
         final rss1Feed = Rss1Feed.parse(xmlString);
-        return WebFeed.fromRss1(rss1Feed);
+        return RssFeedParser.fromRss1(rss1Feed);
       case RssVersion.rss2:
         final rss2Feed = RssFeed.parse(xmlString);
-        return WebFeed.fromRss2(rss2Feed);
+        return RssFeedParser.fromRss2(rss2Feed);
       case RssVersion.atom:
         final atomFeed = AtomFeed.parse(xmlString);
-        return WebFeed.fromAtom(atomFeed);
+        return RssFeedParser.fromAtom(atomFeed);
       case RssVersion.unknown:
         throw Error.safeToString(
           'Invalid XML String? We cannot detect RSS/Atom version.',
@@ -68,8 +68,8 @@ class WebFeed {
     }
   }
 
-  static WebFeed fromRss1(Rss1Feed rss1feed) {
-    return WebFeed(
+  static RssFeedParser fromRss1(Rss1Feed rss1feed) {
+    return RssFeedParser(
       title: rss1feed.title ?? rss1feed.dc?.title ?? '',
       description: rss1feed.description ?? rss1feed.dc?.description ?? '',
       links: [rss1feed.link],
@@ -86,8 +86,8 @@ class WebFeed {
     );
   }
 
-  static WebFeed fromRss2(RssFeed rssFeed) {
-    return WebFeed(
+  static RssFeedParser fromRss2(RssFeed rssFeed) {
+    return RssFeedParser(
       title: rssFeed.title ?? rssFeed.dc?.title ?? '',
       description: rssFeed.description ?? rssFeed.dc?.description ?? '',
       links: [rssFeed.link],
@@ -105,8 +105,8 @@ class WebFeed {
     );
   }
 
-  static WebFeed fromAtom(AtomFeed atomFeed) {
-    return WebFeed(
+  static RssFeedParser fromAtom(AtomFeed atomFeed) {
+    return RssFeedParser(
       title: atomFeed.title ?? '',
       description: atomFeed.subtitle ?? '',
       links: atomFeed.links.map((atomLink) => atomLink.href).toList(),
@@ -124,7 +124,7 @@ class WebFeed {
     );
   }
 
-  static Future<WebFeed> fromUrl(String url) async {
+  static Future<RssFeedParser> fromUrl(String url) async {
     final response = await http.get(Uri.parse(url));
     return fromXmlString(response.body);
   }

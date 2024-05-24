@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:test/test.dart';
-import 'package:rss_feed_parser/domain/dart_rss.dart';
+import 'package:rss_feed_parser/domain/rss_feed_parser.dart';
 
 void main() {
   group('about WebFeed, ', () {
@@ -26,23 +26,23 @@ void main() {
     });
 
     test('it can detect Atom feed.', () {
-      final version = WebFeed.detectRssVersion(atomXmlString);
+      final version = RssFeedParser.detectRssVersion(atomXmlString);
       expect(version, RssVersion.atom);
     });
 
     test('it can detect RSS1.0 feed.', () {
-      final version = WebFeed.detectRssVersion(rss1XmlString);
+      final version = RssFeedParser.detectRssVersion(rss1XmlString);
       expect(version, RssVersion.rss1);
     });
 
     test('it can detect RSS2.0 feed.', () {
-      final version = WebFeed.detectRssVersion(rss2XmlString);
+      final version = RssFeedParser.detectRssVersion(rss2XmlString);
       expect(version, RssVersion.rss2);
     });
 
     test('it can parse Atom feed.', () {
       // when
-      final atomFeed = WebFeed.fromXmlString(atomXmlString);
+      final atomFeed = RssFeedParser.fromXmlString(atomXmlString);
 
       // then
       expect(atomFeed.title, 'Foo bar news');
@@ -58,7 +58,7 @@ void main() {
 
     test('it can parse RSS1.0 feed.', () {
       // when
-      final rss1Feed = WebFeed.fromXmlString(rss1XmlString);
+      final rss1Feed = RssFeedParser.fromXmlString(rss1XmlString);
 
       // then
       expect(rss1Feed.title, 'Meerkat');
@@ -74,7 +74,7 @@ void main() {
 
     test('it can parse RSS2.0 feed.', () {
       // when
-      final rss2Feed = WebFeed.fromXmlString(rss2XmlString);
+      final rss2Feed = RssFeedParser.fromXmlString(rss2XmlString);
 
       // then
       expect(rss2Feed.title, 'News - Foo bar News');

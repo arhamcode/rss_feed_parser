@@ -15,7 +15,7 @@ void main() {
       final url = testFeeds[title]!;
       test(title, () async {
         // given
-        final feed = await WebFeed.fromUrl(url);
+        final feed = await RssFeedParser.fromUrl(url);
 
         // then
         expect(feed.title.isNotEmpty, true);

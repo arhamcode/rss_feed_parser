@@ -1,6 +1,6 @@
 name: rss_feed_parser
 description: A dart package for parsing and generating RSS1.0, RSS2.0, and Atom feeds.
-version: 1.0.6
+version: 1.0.7
 homepage: https://github.com/arhamcode/rss_feed_parser
 repository: https://github.com/arhamcode/rss_feed_parser
 
