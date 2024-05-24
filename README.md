@@ -1,5 +1,15 @@
 # RSS Feed Parser
-A dart package for parsing and generating RSS1.0, RSS2.0, and Atom feeds.
+A dart package for parsing RSS1.0, RSS2.0, and Atom feeds.
+
+### Features
+
+- [x] RSS 1.0
+- [x] RSS 2.0
+- [x] Atom
+- [x] Namespaces
+    - [x] Media RSS
+    - [x] Dublin Core
+    - [x] Podcast
 
 ### Example
 Import the package into your dart code using:
