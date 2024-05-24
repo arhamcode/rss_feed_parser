@@ -1,4 +1,7 @@
 # Changelog
+## [1.0.6] - May, 2024
+ * Add documentation for Atom category.
+
 ## [1.0.5] - May, 2024
  * New fixing.
 
