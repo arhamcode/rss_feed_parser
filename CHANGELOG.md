@@ -1,4 +1,7 @@
 # Changelog
+## [2.0.0] - May, 2024
+ * intl support 0.20.2
+
 ## [1.0.7] - May, 2024
  * Fix
 

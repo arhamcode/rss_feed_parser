@@ -63,9 +63,7 @@ class RssFeedParser {
         throw Error.safeToString(
           'Invalid XML String? We cannot detect RSS/Atom version.',
         );
-      default:
-        throw Exception('Some error has occured.');
-    }
+      }
   }
 
   static RssFeedParser fromRss1(Rss1Feed rss1feed) {
